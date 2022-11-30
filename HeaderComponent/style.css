@@ -1,0 +1,41 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu:wght@300&display=swap');
+
+nav{
+    display: flex;
+    justify-content: space-around;
+}
+
+.logo{
+    display: flex;
+    align-items: center;
+}
+
+.logo img{
+    width: 88px;
+    padding: 0 25px;
+}
+
+.search{
+    align-items: center;
+    display: flex;
+    position: relative;
+}
+
+.search input{
+    width: 30vw;
+    height: 40px;
+    border-radius: 5px;
+    margin: 0 16px 0 56px;
+    padding: 0 12px;
+}
+
+.search img{
+    width: 30px;
+    position: absolute;
+    right: 30px;
+}
+
+.user-icon img{
+    width: 100px;
+}
