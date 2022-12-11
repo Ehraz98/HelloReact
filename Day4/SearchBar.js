@@ -2,7 +2,7 @@ import { useState } from "react";
 import SearchResults from "./SearchResults";
 
 const SearchBar = (props) => {
-    const {setFilteredRestaurants}= props;
+    const {setFilteredTeammates}= props;
     const [searchText, setSearchText] = useState("Ehraz");
     return (
         <div className="search">
@@ -11,7 +11,7 @@ const SearchBar = (props) => {
                 (e)=>{
                     e.preventDefault();
                     const searchTextResult = SearchResults(searchText);
-                    setFilteredRestaurants(searchTextResult);
+                    setFilteredTeammates(searchTextResult);
                 }
             }
             >
