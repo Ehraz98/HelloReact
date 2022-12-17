@@ -2,15 +2,15 @@ import { useState } from "react";
 import SearchResults from "./SearchResults";
 
 const SearchBar = (props) => {
-    const {setFilteredTeammates}= props;
-    const [searchText, setSearchText] = useState("Ehraz");
+    const {setFilteredTeammates, userData}= props;
+    const [searchText, setSearchText] = useState("");
     return (
         <div className="search">
             <form
             onSubmit={
                 (e)=>{
                     e.preventDefault();
-                    const searchTextResult = SearchResults(searchText);
+                    const searchTextResult = SearchResults(searchText, userData);
                     setFilteredTeammates(searchTextResult);
                 }
             }
