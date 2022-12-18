@@ -1,10 +1,10 @@
 import data from './data.json';
 
-const SearchResults = (searchData) =>{
+const SearchResults = (searchData, userData) =>{
     if(searchData === '')
-    return data;
+    return userData;
     let result = [];
-    data.forEach(teammate =>{
+    userData.forEach(teammate =>{
         const nameArr = teammate.name.split(' ');
         for(x of nameArr)
         {

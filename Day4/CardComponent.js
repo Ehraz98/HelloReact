@@ -1,18 +1,16 @@
-const CardComponent = (props) => {
+const CardComponent = props => {
     const personData = props.personData;
-    const {photo, name, place, Company, linkedin} = personData;
+    const { avatar_url, name, location, bio, company, html_url } = personData;
+    const companydesignation = `${bio}, ${company}`;
     return (
         <div id="card" className="card">
-            <img src={photo}/>
+            <img src={avatar_url} />
             <h3>{name}</h3>
-            <h5>{place}</h5>
-            <h5>{Company}</h5>
-            <div className="linkedin card-item-details">
-                <img src="https://namaste-react-playground-ricz5c1x0-sumitarg.vercel.app/linkedin.4ce9be1b.svg" />
-                <a
-                    href={linkedin}
-                    target="_blank"
-                >
+            <h5>{location}</h5>
+            <h5>{companydesignation}</h5>
+            <div className="card-item-details">
+                <img src="https://cdn-icons-png.flaticon.com/512/25/25231.png" />
+                <a href={html_url} target="_blank">
                     {name}
                 </a>
             </div>
