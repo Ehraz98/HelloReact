@@ -1,10 +1,12 @@
 import ReactDOM from 'react-dom/client';
 import CardComponent from './CardComponent.js';
-import data from './data.json';
 import { title } from './constants.js';
 import SearchBar from './SearchBar.js';
 import { useEffect, useState } from 'react';
 import NoResultsComponent from './NoResultsComponent.js';
+import { createBrowserRouter, RouterProvider, Outlet, Link } from 'react-router-dom';
+import ErrorComponent from './ErrorComponent.js';
+import UserComponent from './UserComponent.js';
 
 const HeadingComponent = () => (
     <div id="title" className="title-class" tabIndex="1">
@@ -17,7 +19,12 @@ const CardContainer = props => {
     if (filteredTeammates.length) {
         const cards = filteredTeammates.map(personData => {
             return (
-                <CardComponent personData={personData} key={personData.id} />
+                <Link to={`/user/${personData.login}`}>
+                    <CardComponent
+                        personData={personData}
+                        key={personData.id}
+                    />
+                </Link>
             );
         });
         return cards;
@@ -29,12 +36,15 @@ const CardContainer = props => {
 const BodyComponent = () => {
     const [filteredTeammates, setFilteredTeammates] = useState([]);
     const [userData, setUsersData] = useState([]);
-    useEffect(()=>{
-        fetchData(setFilteredTeammates,setUsersData);
-    }, [])
+    useEffect(() => {
+        fetchData(setFilteredTeammates, setUsersData);
+    }, []);
     return (
         <div className="card-container">
-            <SearchBar setFilteredTeammates={setFilteredTeammates} userData = {userData} />
+            <SearchBar
+                setFilteredTeammates={setFilteredTeammates}
+                userData={userData}
+            />
             <CardContainer filteredTeammates={filteredTeammates} />
         </div>
     );
@@ -49,10 +59,9 @@ fetchData = async (setFilteredTeammates, setUsersData) => {
         'pandeymeenakshi',
     ];
     const usersData = [];
-    for(const user of userIds)
-    {
+    for (const user of userIds) {
         const data = await fetch(`https://api.github.com/users/${user}`);
-        const json =  await data.json();
+        const json = await data.json();
         usersData.push(json);
     }
     setFilteredTeammates(usersData);
@@ -62,9 +71,27 @@ fetchData = async (setFilteredTeammates, setUsersData) => {
 const AppLayout = () => (
     <>
         <HeadingComponent />
-        <BodyComponent />
+        <Outlet />
     </>
 );
 
+const appRouter = createBrowserRouter([
+    {
+        path: '/',
+        element: <AppLayout />,
+        errorElement: <ErrorComponent />,
+        children: [
+            {
+                path: '/',
+                element: <BodyComponent />,
+            },
+            {
+                path: '/user/:githubId',
+                element: <UserComponent />,
+            },
+        ],
+    },
+]);
+
 const root = ReactDOM.createRoot(document.getElementById('root'));
-root.render(<AppLayout />);
+root.render(<RouterProvider router={appRouter} />);

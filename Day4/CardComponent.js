@@ -10,9 +10,13 @@ const CardComponent = props => {
             <h5>{companydesignation}</h5>
             <div className="card-item-details">
                 <img src="https://cdn-icons-png.flaticon.com/512/25/25231.png" />
-                <a href={html_url} target="_blank">
+                <span
+                    onClick={() => {
+                        window.open({ html_url }, '_blank');
+                    }}
+                >
                     {name}
-                </a>
+                </span>
             </div>
         </div>
     );
