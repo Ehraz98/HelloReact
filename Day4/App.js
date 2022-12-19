@@ -19,10 +19,9 @@ const CardContainer = props => {
     if (filteredTeammates.length) {
         const cards = filteredTeammates.map(personData => {
             return (
-                <Link to={`/user/${personData.login}`}>
+                <Link to={`/user/${personData.login}`} key={personData.id}>
                     <CardComponent
                         personData={personData}
-                        key={personData.id}
                     />
                 </Link>
             );
