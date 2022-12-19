@@ -8,13 +8,12 @@ const CardComponent = props => {
             <h3>{name}</h3>
             <h5>{location}</h5>
             <h5>{companydesignation}</h5>
-            <div className="card-item-details">
+            <div className="card-item-details" onClick={(event) => {
+                        event.stopPropagation();
+                        window.open(html_url , '_blank');
+                    }}>
                 <img src="https://cdn-icons-png.flaticon.com/512/25/25231.png" />
-                <span
-                    onClick={() => {
-                        window.open({ html_url }, '_blank');
-                    }}
-                >
+                <span>
                     {name}
                 </span>
             </div>
