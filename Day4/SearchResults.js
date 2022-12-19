@@ -1,3 +1,5 @@
+import data from './data.json';
+
 const SearchResults = (searchData, userData) =>{
     if(searchData === '')
     return userData;
