@@ -8,6 +8,14 @@ class ProfileComponent extends Component {
         };
     }
 
+    async componentDidMount(){
+        const data = await fetch(`https://api.github.com/users/Ehraz98`);
+        const json = await data.json();
+        this.setState({
+            userInfo: json
+        });
+    }
+
     render() {
         const {login,company,avatar_url} = this.state.userInfo;
         return (
@@ -18,14 +26,7 @@ class ProfileComponent extends Component {
             </div>
         );
     }
-
-    async componentDidMount(){
-        const data = await fetch(`https://api.github.com/users/Ehraz98`);
-        const json = await data.json();
-        this.setState({
-            userInfo: json
-        });
-    }
+    
 }
 
 export default ProfileComponent;

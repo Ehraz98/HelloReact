@@ -1,15 +1,15 @@
 import ReactDOM from 'react-dom/client';
-import CardComponent from './CardComponent.js';
-import { title } from './constants.js';
-import SearchBar from './SearchBar.js';
 import { useEffect, useState } from 'react';
-import NoResultsComponent from './NoResultsComponent.js';
 import {
     createBrowserRouter,
     RouterProvider,
     Outlet,
     Link,
 } from 'react-router-dom';
+import { title } from './constants.js';
+import SearchBar from './SearchBar.js';
+import CardComponent from './CardComponent.js';
+import NoResultsComponent from './NoResultsComponent.js';
 import ErrorComponent from './ErrorComponent.js';
 import UserComponent from './UserComponent.js';
 import ProfileComponent from './ProfileComponent.js';
