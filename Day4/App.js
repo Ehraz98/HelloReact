@@ -1,12 +1,19 @@
 import ReactDOM from 'react-dom/client';
-import CardComponent from './CardComponent.js';
+import { useEffect, useState } from 'react';
+import {
+    createBrowserRouter,
+    RouterProvider,
+    Outlet,
+    Link,
+} from 'react-router-dom';
 import { title } from './constants.js';
 import SearchBar from './SearchBar.js';
-import { useEffect, useState } from 'react';
+import CardComponent from './CardComponent.js';
 import NoResultsComponent from './NoResultsComponent.js';
-import { createBrowserRouter, RouterProvider, Outlet, Link } from 'react-router-dom';
 import ErrorComponent from './ErrorComponent.js';
 import UserComponent from './UserComponent.js';
+import ProfileComponent from './ProfileComponent.js';
+import AboutUs from './AboutUs.js';
 
 const HeadingComponent = () => (
     <div id="title" className="title-class" tabIndex="1">
@@ -20,9 +27,7 @@ const CardContainer = props => {
         const cards = filteredTeammates.map(personData => {
             return (
                 <Link to={`/user/${personData.login}`} key={personData.id}>
-                    <CardComponent
-                        personData={personData}
-                    />
+                    <CardComponent personData={personData} />
                 </Link>
             );
         });
@@ -87,6 +92,16 @@ const appRouter = createBrowserRouter([
             {
                 path: '/user/:githubId',
                 element: <UserComponent />,
+            },
+            {
+                path: '/aboutus',
+                element: <AboutUs />,
+                children: [
+                    {
+                        path: '/aboutus/profile',
+                        element: <ProfileComponent />,
+                    }
+                ]
             },
         ],
     },
